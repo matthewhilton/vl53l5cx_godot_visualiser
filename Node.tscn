@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Serial.cs" type="Script" id=1]
+[ext_resource path="res://Vis.gd" type="Script" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0192623, 0.0620079, 0.00131226 )
+script = ExtResource( 2 )
+
+[node name="Serial" type="Node" parent="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Vis Parent" type="Spatial" parent="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.915831, 0.401564, 0, -0.401564, 0.915831, 0, 14.2724, 25.1875 )
