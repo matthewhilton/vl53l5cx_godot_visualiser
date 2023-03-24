@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Serial.cs" type="Script" id=1]
 [ext_resource path="res://Vis.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.407843, 0.933333, 0.0156863, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.168627, 0.568627, 0.72549, 1 )
 
 [node name="Node" type="Node"]
 
@@ -12,7 +22,31 @@ script = ExtResource( 2 )
 [node name="Serial" type="Node" parent="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Vis Parent" type="Spatial" parent="Spatial"]
+[node name="Sensor A" type="Spatial" parent="Spatial"]
+transform = Transform( 0.860644, 0.509207, 0, -0.509207, 0.860644, 0, 0, 0, 1, 5.07439, 3.72529e-09, 0 )
+
+[node name="SensorBody" type="KinematicBody" parent="Spatial/Sensor A"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Spatial/Sensor A/SensorBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial/Sensor A/SensorBody"]
+transform = Transform( 1, -0.000364184, -0.000151687, 0.000364184, 1, -7.42412e-05, 0.000151707, 7.42003e-05, 1, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Sensor B" type="Spatial" parent="Spatial"]
+
+[node name="SensorBody" type="KinematicBody" parent="Spatial/Sensor B"]
+transform = Transform( 0.854649, -0.519206, 0, 0.519206, 0.854649, 0, 0, 0, 1, -4.51454, 3.72529e-09, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Spatial/Sensor B/SensorBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial/Sensor B/SensorBody"]
+transform = Transform( 0.999999, -0.00123492, -0.00046462, 0.00123513, 0.999999, 0.000334879, 0.000464194, -0.000335469, 1, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.915831, 0.401564, 0, -0.401564, 0.915831, 0, 14.2724, 25.1875 )
